@@ -1,4 +1,8 @@
-module.exports = app => {
-  require('./auth')(app);
-  require('./user')(app);
+const signUp = () => {};
+const getUsers = () => {};
+
+module.exports = {
+  signUp,
+  getUsers,
+  login
 };

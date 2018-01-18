@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const port = process.env.PORT || 5000;
-
+const routes = require('./routes');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/auth', { useMongoClient: true });
 
@@ -12,12 +12,12 @@ const corsOptions = {
   credentials: true
 };
 
-const app = express();
-app.use(bodyParser.json());
-app.use(cors(corsOptions));
+const server = express();
+server.use(bodyParser.json());
+server.use(cors(corsOptions));
 
-require('./controllers')(app);
+routes(server);
 
-app.listen(port, (req, res) => {
+server.listen(port, (req, res) => {
   console.log(`server listening on port ${port}`);
 });

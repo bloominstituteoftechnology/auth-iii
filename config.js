@@ -1,3 +1,3 @@
 module.exports = {
-  secret: 'This can be any sequence of characters',
+  secret: 'Who but me? Loves JWT'
 };

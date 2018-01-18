@@ -10,20 +10,16 @@ const UserSchema = mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
-  },
+    required: true
+  }
 });
 
 UserSchema.pre('save', function(next) {
   // generate the salt
-  bcrypt.genSalt(10, (err, salt) => {
+  bcrypt.hash(this.password, 11, null, (err, hash) => {
     if (err) return next(err);
-    // hash password
-    bcrypt.hash(this.password, salt, null, (err, hash) => {
-      if (err) return next(err);
-      this.password = hash;
-      next();
-    });
+    this.password = hash;
+    next();
   });
 });
 
