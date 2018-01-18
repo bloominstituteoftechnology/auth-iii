@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const User = require('../models');
 const { requireAuth, getTokenForUser } = require('../services/auth');
 
 const createUser = (req, res) => {
@@ -14,7 +14,8 @@ const createUser = (req, res) => {
 };
 
 const getUsers = (req, res) => {
-  // TODO: Protect this route from being able to be accessed without a JWT;
+  // This controller will not work until a user has sent up a valid JWT
+  // check out what's going on in services/index.js in the `validate` token function
   User.find({}, (err, users) => {
     if (err) return res.send(err);
     res.send(users);
@@ -33,6 +34,7 @@ const login = (req, res) => {
       return;
     }
     user.checkPassword(password, (nonMatch, hashMatch) => {
+      // This is an example of using our User.method from our model.
       if (nonMatch !== null) {
         res.status(422).json({ error: 'passwords dont match' });
         return;

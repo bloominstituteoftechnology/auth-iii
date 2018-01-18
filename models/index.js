@@ -14,8 +14,12 @@ const UserSchema = mongoose.Schema({
   }
 });
 
+// notice something new here you haven't seen yet. This is a 'pre save hook'
+// its sole purpose is to take whatever tries to get saved to the 'password' field and change it
+// the rest you have seen, bcrypt!!!!
+// you can effectively think of this hook as a function that is encrypting pw's for us.
 UserSchema.pre('save', function(next) {
-  // generate the salt
+  // generate the salt and hash the pw
   bcrypt.hash(this.password, 11, (err, hash) => {
     if (err) return next(err);
     this.password = hash;
@@ -23,6 +27,10 @@ UserSchema.pre('save', function(next) {
   });
 });
 
+// This is also new to you.
+// Looking at this we can assume that every instance of "User" will have access to this method
+// We're using this method to decypher any encrypted passwords when a user logs in
+// For reference of how we're using this method, see the
 UserSchema.methods.checkPassword = function(potentialPassword, cb) {
   // check passwords
   bcrypt.compare(potentialPassword, this.password, (err, isMatch) => {
