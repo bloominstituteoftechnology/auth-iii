@@ -1,20 +1,32 @@
 {
-  "name": "auth",
+  "name": "Auth-JWT",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "config.js",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^5.0.0",
+    "passport": "^0.4.0"
   },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LambdaSchool/Auth-JWT.git"
+  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.17.1",
-    "cors": "^2.8.3",
-    "express": "^4.15.2",
-    "jsonwebtoken": "^8.1.0",
-    "mongoose": "^4.9.8",
-    "passport": "^0.3.2"
-  }
+  "bugs": {
+    "url": "https://github.com/LambdaSchool/Auth-JWT/issues"
+  },
+  "homepage": "https://github.com/LambdaSchool/Auth-JWT#readme"
 }

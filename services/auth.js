@@ -2,13 +2,15 @@ const jwt = require('jsonwebtoken');
 const { secret } = require('../config');
 
 const getTokenForUser = userObject => {
-  const token = jwt.sign(userObject, secret, { expiresIn: '1h' });
-  console.log(token);
+  // creating a JWT and returning it.
+  return jwt.sign(userObject, secret, { expiresIn: '1h' });
 };
 
-const validateToken = _ => {};
+const requireAuth = () => {
+  // TODO: fill this in for the token validation on GET /USERS
+};
 
 module.exports = {
   getTokenForUser,
-  validateToken
+  requireAuth
 };

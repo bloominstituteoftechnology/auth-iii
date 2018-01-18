@@ -5,7 +5,7 @@ const cors = require('cors');
 const port = process.env.PORT || 5000;
 const routes = require('./routes');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/auth', { useMongoClient: true });
+mongoose.connect('mongodb://localhost/auth');
 
 const corsOptions = {
   origin: 'http://localhost:3000',
