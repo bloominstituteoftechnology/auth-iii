@@ -6,6 +6,14 @@ const getTokenForUser = userObject => {
   // this function is more of a simple helper function than middleware,
   // notice `req, res and next` are missing, this is because the auth is simple here.
   // no need for custom middleware, just a helper function. :)
+  function generateToken(req){
+    var token = jwt.sign({
+      auth:  'magic',
+      agent: req.headers['user-agent'],
+      exp:   Math.floor(new Date().getTime()/1000) + 7*24*60*60; // Note: in seconds!
+    }, secret);  // secret is defined in the environment variable JWT_SECRET
+    return token;
+  }
   return jwt.sign(userObject, secret, { expiresIn: '1h' });
 };
 
