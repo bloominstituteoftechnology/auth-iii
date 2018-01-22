@@ -6,7 +6,7 @@ const getTokenForUser = userObject => {
   // this function is more of a simple helper function than middleware,
   // notice `req, res and next` are missing, this is because the auth is simple here.
   // no need for custom middleware, just a helper function. :)
-  return jwt.sign(userObject, secret, { expiresIn: '1h' });
+  return jwt.sign(userObject, secret, { expiresIn: '5s' });
 };
 
 const validateToken = (req, res, next) => {
