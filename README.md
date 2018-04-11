@@ -1,6 +1,7 @@
-# Auth-JWT
 
-This project is given to you for the benefit of using a previously implemented JWT authentication structure for you.
+### Client Authentication using JWTs
+
+* The goal of this exercise is to have you refactor your client to work with a JWT server, not implement the JWT server itself (unless you really want to). Have a look around the code and try to understand as much of what it is doing as you can.
 
 To get started be sure to follow the regular steps:
 
@@ -42,3 +43,6 @@ headers: {
 
 * _Notice_ you'll be sending this up to the server on the header. Eventually we could write a mechanism into our server to accept this via header, query string or req.body.
 * If your token is valid, you'll get a list of the sent back that are in the system.
+
+## Stretch Problem
+Build the entire client from scratch and duplicate this functionality. This is a great exercise to solidify your React/Redux chops!
