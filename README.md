@@ -1,4 +1,3 @@
-
 ### Client Authentication using JWTs
 
 * The goal of this exercise is to have you refactor your client to work with a JWT server, not implement the JWT server itself (unless you really want to). Have a look around the code and try to understand as much of what it is doing as you can.
@@ -10,10 +9,6 @@ To get started be sure to follow the regular steps:
 * `yarn start` to run nodemon over the server file.
 
 The three endpoints that are included are:
-
-Take a tour of this repository. Get familiar with the chosen file structure. _Notice_ we have a few directories here. `controllers` `models` `routes` and `services`. You can think of each of those this way.
-
-* `controllers` - the code that interfaces between our routes and
 
 ## `[POST] /api/users`
 
@@ -45,4 +40,5 @@ headers: {
 * If your token is valid, you'll get a list of the sent back that are in the system.
 
 ## Stretch Problem
+
 Build the entire client from scratch and duplicate this functionality. This is a great exercise to solidify your React/Redux chops!
