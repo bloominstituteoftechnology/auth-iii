@@ -1,5 +1,5 @@
 {
-  "name": "Auth-JWT",
+  "name": "auth-jwt",
   "version": "1.0.0",
   "description": "",
   "main": "config.js",
@@ -13,7 +13,9 @@
     "mongoose": "^5.0.0",
     "passport": "^0.4.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
