@@ -13,7 +13,7 @@ mongoose.connect('mongodb://localhost/auth');
 
 const corsOptions = {
   origin: 'http://localhost:3000',
-  credentials: true
+  credentials: true,
 };
 
 const server = express();
@@ -35,6 +35,7 @@ const validateToken = (req, res, next) => {
   // if no token is found in the header, you'll get a 422
   // if token is not valid, you'll be asked to login
   const token = req.headers.authorization;
+  console.log('validateToken');
   if (!token) {
     res
       .status(422)
@@ -63,7 +64,7 @@ const createUser = (req, res) => {
     if (err) return res.send(err);
     res.json({
       success: 'User saved',
-      user
+      user,
     });
   });
 };
