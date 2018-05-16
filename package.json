@@ -1,21 +1,19 @@
 {
-  "name": "Auth-JWT",
+  "name": "auth-jwt",
   "version": "1.0.0",
   "description": "",
-  "main": "config.js",
+  "main": "server.js",
   "dependencies": {
-    "bcrypt": "^1.0.3",
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.18.2",
+    "bcrypt": "^2.0.1",
     "cors": "^2.8.4",
-    "express": "^4.16.2",
-    "jsonwebtoken": "^8.1.0",
-    "mongoose": "^5.0.0",
-    "passport": "^0.4.0"
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.1",
+    "mongoose": "^5.1.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.17.4"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
   },
   "repository": {
@@ -23,7 +21,7 @@
     "url": "git+https://github.com/LambdaSchool/Auth-JWT.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Lambda School",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/LambdaSchool/Auth-JWT/issues"

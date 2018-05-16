@@ -1,22 +1,28 @@
-### Client Authentication using JWTs
+# Client Authentication using JWTs
 
-* The goal of this exercise is to have you refactor your client to work with a JWT server, not implement the JWT server itself (unless you really want to). Have a look around the code and try to understand as much of what it is doing as you can.
+The goal of this exercise is to build a client to work with a JWT server, not implement the JWT server itself (unless you really want to). We have provided a very simple implementation of a JWT server.
+
+## Download and Start the Server
 
 To get started be sure to follow the regular steps:
 
-* `yarn` to install all the dependencies from the package.json file.
-* `mongod` to start your mongo instance.
-* `yarn start` to run nodemon over the server file.
+* fork and clone this repository.
+* **cd inside the folder**.
+* `yarn` or `npm install` to download all the dependencies listed in `package.json`.
+* `mongod` to start your MongoDB server.
+* `yarn start` to start the API server.
 
-The three endpoints that are included are:
+## Endpoints
+
+The server provides the following endpoints:
 
 ## `[POST] /api/users`
 
-* Takes a `username` and `password` in the request body and creates a user to save to the DB.
+* Takes a `username` and `password` in the request body, creates a user, saves the user to the DB and returns a JWT token.
 
 ## `[POST] /api/login`
 
-* Requires `username` and `password` to be sent up to the request body. If the user exists, and the password is correct the result should be a shiny JWT.
+* Requires `username` and `password` to be sent in the request body. If the user exists, and the password is correct the result should be a shiny JWT.
 
 ```
 {
@@ -28,7 +34,8 @@ The three endpoints that are included are:
 
 ## `[GET] /api/users`
 
-* Requires a valid JWT token to be sent in the `Authorization` header. An example could look like this:
+* Requires a valid JWT token to be sent in the `Authorization` header. **No need to add the word** `Bearer`, just the token.
+* An example could look like this:
 
 ```
 headers: {
@@ -36,9 +43,15 @@ headers: {
 }
 ```
 
-* _Notice_ you'll be sending this up to the server on the header. Eventually we could write a mechanism into our server to accept this via header, query string or req.body.
-* If your token is valid, you'll get a list of the sent back that are in the system.
+* If your token is valid, you'll get a list of the users stored in the database.
 
-## Stretch Problem
+## Assignment
 
-Build the entire client from scratch and duplicate this functionality. This is a great exercise to solidify your React/Redux chops!
+Build a React client to connect to the provided server.
+
+* add client side routes and components for `signup`, `sigin` and showing a list of `users` stored in the database.
+* the `/signup` route should provide a form to gather username and password for the user and make a POST request to the `/api/register` route on the API. If the user is created successfully, take the returned token, save it to the browser's local storage and redirect the user to the `/users` route.
+* the `/signin` route should provide a form to gather username and password for the user and make a POST request to the `/api/login` route on the API. Upon successful login, persist the returned token to the browser's local storage and redirect the user to the `/users` route.
+* the `/users` route should read the token from local storage and make a GET request to the `/api/users` route on the API attaching the token as the value of the `Authorization` header.
+* provide a button to sign out that will remove the token from local storage.
+* add any extra functionality to make the application more user friendly.
