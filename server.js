@@ -63,6 +63,10 @@ server.post('/api/register', (req, res) => {
   });
 });
 
+server.get("/", (req, res) => {
+  res.send("hello")
+})
+
 server.get('/api/users', validateToken, (req, res) => {
   User.find({})
     .select('username')
