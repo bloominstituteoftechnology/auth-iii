@@ -14,7 +14,7 @@ class Users extends React.Component {
         </ul>
         <div>
           <Link to='/'>
-            <button OnClick={this.signout}>Sign Out</button>
+          <button OnClick={this.signout}>Sign Out</button>
           </Link>
         </div>
       </div>
