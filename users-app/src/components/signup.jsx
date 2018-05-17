@@ -11,7 +11,10 @@ class SignUp extends Component {
     const { username, password } = this.state;
     axios
       .post("http://localhost:5000/api/users", { username, password })
-      .then(user => localStorage.setItem('token', user.data.token))
+      .then(user => {
+        localStorage.setItem('token', user.data.token);
+        this.props.history.push('/users');
+      })
       .catch(err => console.log(err));
     this.setState({ username: "", password: "" });
   }
