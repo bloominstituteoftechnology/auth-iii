@@ -1,7 +1,7 @@
-import { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
 
-class Signup extends Component {
+class Signup extends React.Component {
     state = {
         username: '',
         password: '',
@@ -17,6 +17,7 @@ class Signup extends Component {
                         value={this.state.username} 
                         onChange={this.inputChangeHandler} 
                         type='text' 
+                        placeholder='username'
                     />
                 </div>
                 <div>
@@ -26,6 +27,7 @@ class Signup extends Component {
                         value={this.state.password}
                         onChange={this.inputChangeHandler}
                         type='password'
+                        placeholder='password'
                     />
                 </div>
                 <div>
@@ -42,10 +44,10 @@ class Signup extends Component {
     submitHandler = event => {
         event.preventDefault();
         axios 
-            .post('http://localhost:5000/register', this.state)
+            .post('http://localhost:5500/api/register', this.state)
             .then(response => {
                 localStorage.setItem('token', response.data.token);
-                this.props.history.push('/login');
+                this.props.history.push('/users');
             })
             .catch(err => {
                 localStorage.removeItem('token');

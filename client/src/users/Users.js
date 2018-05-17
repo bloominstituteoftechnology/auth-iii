@@ -1,7 +1,7 @@
-import { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
 
-class Users extends Component {
+class Users extends React.Component {
     state= {
         users: [],
     };
@@ -15,14 +15,14 @@ class Users extends Component {
 
     componentDidMount = event => {
         const token = localStorage.getItem('token');
-        const authToken = `Bearer ${token}`;
+        const authToken = `${token}`;
         const requestOptions= {
             headers: {
                 Authorization: authToken,
             },
         };
         axios 
-            .get('http://localhost:5000/users', requestOptions)
+            .get('http://localhost:5500/api/users', requestOptions)
             .then(response => {
                 this.setState({ users: response.data });
             })
@@ -30,4 +30,6 @@ class Users extends Component {
                 this.props.history.push('/login');
             })
     }
-}
+};
+
+export default Users;

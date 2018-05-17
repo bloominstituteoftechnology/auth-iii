@@ -1,7 +1,7 @@
-import { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
 
-class Signin extends Component {
+class Signin extends React.Component {
     state ={
         username: '',
         password: '',
@@ -16,6 +16,7 @@ class Signin extends Component {
                         value={this.state.username}
                         onChange={this.inputChangeHandler}
                         type='text'
+                        placeholder='username'
                     />
                 </div>
                 <div>
@@ -25,6 +26,7 @@ class Signin extends Component {
                         value={this.state.password}
                         onChange={this.inputChangeHandler}
                         type='password'
+                        placeholder='password'
                     />
                 </div>
                 <div>
@@ -41,7 +43,7 @@ class Signin extends Component {
     submitHandler = event => {
         event.preventDefault();
         axios 
-            .post('http://localhost:5000/login', this.state)
+            .post('http://localhost:5500/api/login', this.state)
             .then(response => {
                 localStorage.setItem('token', response.data.token);
                 this.props.history.push('/users');
