@@ -31,8 +31,10 @@ handleInputChange = e => {
     render(){
         return (
             <div>
-                <form >
+                <span className="wow">Register if you can they are watching</span>
+                <form className="whatever" >
           <input
+          className="boxes"
             onChange={this.handleInputChange}
             placeholder="username here"
             value={this.state.username}
@@ -40,13 +42,14 @@ handleInputChange = e => {
             type="text"
           />
           <input
+          className="boxes"
             onChange={this.handleInputChange}
             placeholder="password here"
             value={this.state.password}
             name="password"
             type="text"
           />
-          <Link to='/'><button onClick={this.addUser} value='submit' type='submit'>Register</button></Link>
+          <Link to='/'><button className="Butts" onClick={this.addUser} value='submit' type='submit'>Register</button></Link>
           </form>
             </div>
         )

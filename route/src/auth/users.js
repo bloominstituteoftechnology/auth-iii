@@ -29,7 +29,7 @@ class Users extends Component {
             this.setState({ users: response.data })
           })
           .catch(err => {
-            console.log(err);
+            this.props.history.push('/');
           })
       }
 
@@ -42,10 +42,10 @@ class Users extends Component {
         // const {user} = this.props;
         return (
             <div>
-                <button onClick={this.signout}>Sign Out</button>
+                <button className="foo"onClick={this.signout}>Sign Out</button>
                 {this.state.users.map(user => {
                     return (
-                        <h3>{user.username}</h3>
+                        <h3 className="wow">{user.username}</h3>
                     )
                 })}
                 

@@ -25,6 +25,9 @@ class Login extends Component {
             console.log(err);
         })
     }
+    dumb = () => {
+        this.props.history.push('/register');
+    }
     
     handleInputChange = e => {
         this.setState({ [e.target.name]: e.target.value });
@@ -32,9 +35,11 @@ class Login extends Component {
 
     render(){
         return (
-            <div>
-                    <form >
+            <div >
+                <span className="wow">Welcome! Please come in while no one is watching</span>
+                    <form className="whatever" >
           <input
+            className="boxes"
             onChange={this.handleInputChange}
             placeholder="username here"
             value={this.state.username}
@@ -42,14 +47,17 @@ class Login extends Component {
             type="text"
           />
           <input
+            className="boxes"
             onChange={this.handleInputChange}
             placeholder="password here"
             value={this.state.password}
             name="password"
             type="text"
           />
-          <button onClick={this.addUser} value='submit' type='submit'>Login</button>
-          <Link to='/register'><button to='/register'>Need To Register</button></Link>
+          <div>
+          <button className="Butts" onClick={this.addUser} value='submit' type='submit'>Login</button>
+          <button className="Butts" onClick={this.dumb}>Need To Register</button>
+          </div>
           </form>
             </div>
         )
