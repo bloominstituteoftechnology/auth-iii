@@ -3,8 +3,8 @@ import axios from 'axios';
 
 class Signin extends React.Component {
   state = {
-    username: 'me',
-    password: 'nothing',
+    username: '',
+    password: '',
   };
 
   render() {
@@ -45,8 +45,9 @@ class Signin extends React.Component {
     event.preventDefault();
 
     axios
-      .post('http://localhost:5500/login', this.state)
+      .post('http://localhost:5500/api/login', this.state)
       .then(response => {
+        console.log(response.data);
         localStorage.setItem('token', response.data.token);
 
         this.props.history.push('/users');

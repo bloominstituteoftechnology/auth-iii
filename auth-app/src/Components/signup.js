@@ -1,50 +1,61 @@
-import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import { reduxForm, Field } from 'redux-form';
-import { register } from '../actions';
+import React from 'react';
+import axios from 'axios';
 
-class SignUp extends Component {
-  renderAlert = () => {
-    if (!this.props.error) return null;
-    return <h3>{this.props.error}</h3>;
+class Register extends React.Component {
+  state = {
+    username: 'samwise',
+    password: 'pass',
   };
-  handleFormSubmit = ({ username, password, confirmPassword }) => {
-    const { history } = this.props;
-    this.props.register(username, password, confirmPassword, history);
-  };
+
   render() {
-    const { handleSubmit } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-        <fieldset>
-          <label>Email:</label>
-          <Field name="username" component="input" type="text" />
-        </fieldset>
-        <fieldset>
-          <label>Password:</label>
-          <Field name="password" component="input" type="password" />
-        </fieldset>
-        <fieldset>
-          <label>Password:</label>
-          <Field name="confirmPassword" component="input" type="password" />
-        </fieldset>
-        <button action="submit">Sign In</button>
-        {this.renderAlert()}
+      <form onSubmit={this.submitHandler}>
+        <div>
+          <label htmlFor="username" />
+          <input
+            name="username"
+            value={this.state.username}
+            onChange={this.inputChangeHandler}
+            type="text"
+          />
+        </div>
+        <div>
+          <label htmlFor="password" />
+          <input
+            name="password"
+            value={this.state.password}
+            onChange={this.inputChangeHandler}
+            type="password"
+          />
+        </div>
+        <div>
+          <button>Register</button>
+        </div>
       </form>
     );
   }
+
+  inputChangeHandler = event => {
+    const { name, value } = event.target;
+
+    this.setState({ [name]: value });
+  };
+
+  submitHandler = event => {
+    event.preventDefault();
+
+    axios
+      .post('http://localhost:5500/api/users', this.state)
+      .then(response => {
+        console.log(response.data);
+        localStorage.setItem('token', response.data.token);
+
+        this.props.history.push('/users');
+      })
+      .catch(err => {
+        localStorage.removeItem('token');
+      });
+  };
 }
 
-const mapStateToProps = state => {
-  return {
-    error: state.auth.error
-  };
-};
-
-// Make sure to correctly fill in this `connect` call
-// SignUp = connect(mapStateToProps, { register })(SignUp);
-
-export default Form({
-  form: 'signup',
-  fields: ['username', 'password', 'confirmPassword']
-})(SignUp);
+export default Register;

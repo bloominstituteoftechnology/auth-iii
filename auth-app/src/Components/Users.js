@@ -17,7 +17,7 @@ class Users extends React.Component {
   componentDidMount = event => {
     const token = localStorage.getItem('token');
 
-    const authToken = `Bearer ${token}`;
+    const authToken = token;
 
     const requestOptions = {
       headers: {
@@ -26,7 +26,7 @@ class Users extends React.Component {
     };
 
     axios
-      .get('http://localhost:5500/users', requestOptions)
+      .get('http://localhost:5500/api/users', requestOptions)
       .then(response => {
         this.setState({ users: response.data });
       })
@@ -34,6 +34,8 @@ class Users extends React.Component {
         this.props.history.push('/login');
       });
   };
+
+
 }
 
 export default Users;
