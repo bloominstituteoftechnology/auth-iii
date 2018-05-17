@@ -9,14 +9,16 @@ class Login extends React.Component {
   };
 
   submitLoginHandler = event => {
+    // console.log("Login clicked")
     event.preventDefault();
     axios
       .post("http://localhost:5000/api/login", this.state)
       .then(res => {
         localStorage.setItem("token", res.data.token);
-        this.props.history.push("/api/users");
+        this.props.history.push("/users");
       })
       .catch(err => {
+        // console.log("Token removed")
         localStorage.removeItem("token");
       });
   };
@@ -29,7 +31,7 @@ class Login extends React.Component {
         response: "Welcome!";
       })
       .catch(err => {
-        error: "There  was an error during registration.";
+        error: "There was an error during registration.";
       });
   };
 

@@ -1,9 +1,9 @@
-import React from 'react';
-import axios from 'axios';
+import React from "react";
+import axios from "axios";
 
 class Users extends React.Component {
   state = {
-    users: [],
+    users: []
   };
   render() {
     return (
@@ -13,20 +13,21 @@ class Users extends React.Component {
     );
   }
   componentDidMount = event => {
-    const token = localStorage.getItem('token');
-    const authToken = 'Bearer ${token}';
+    const token = localStorage.getItem("token");
+    const authToken = `${token}`;
     const requestOptions = {
-      header: {
-        Authorization: authToken,
-      },
+      headers: {
+        Authorization: authToken
+      }
     };
     axios
-      .get('http://localhost:5000/api/users', requestOptions)
+      .get("http://localhost:5000/api/users", requestOptions)
       .then(response => {
         this.setState({ users: response.data });
       })
       .catch(error => {
-        this.props.history.push('/api/login');
+        // console.log("wheres ma token");
+        this.props.history.push("/");
       });
   };
 }
