@@ -24,6 +24,11 @@ class App extends Component {
       </div>
     );
   }
+  
+  signout = () => {
+    localStorage.removeItem('token');
+    this.props.history.push('/signin');
+  };
 }
 
 export default withRouter(App);

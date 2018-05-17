@@ -17,11 +17,11 @@ class Users extends React.Component {
   componentDidMount = event => {
     const token = localStorage.getItem('token');
 
-    const authToken = `Bearer ${token}`;
+    //const authToken = `Bearer ${token}`;
 
     const requestOptions = {
       headers: {
-        Authorization: authToken,
+        Authorization: token,
       },
     };
 
@@ -31,7 +31,8 @@ class Users extends React.Component {
         this.setState({ users: response.data });
       })
       .catch(err => {
-        this.props.history.push('/signin');
+        console.log(err);
+        //this.props.history.push('/signin');
       });
   };
 }

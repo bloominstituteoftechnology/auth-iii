@@ -48,11 +48,11 @@ class SignIn extends React.Component {
       .post('http://localhost:5000/api/login', this.state)
       .then(response => {
         localStorage.setItem('token', response.data.token);
-
         this.props.history.push('/users');
       })
       .catch(err => {
         localStorage.removeItem('token');
+        this.setState({username: '', password: ''});
       });
   };
 }
