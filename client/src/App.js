@@ -21,9 +21,9 @@ class App extends Component {
         </p>
         {/* Application Routes */}
         <Switch>
-          <Route exact path="/signIn" component={SignIn} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/users" component={Users} />
+          <Route exact path="/api/signIn" component={SignIn} />
+          <Route exact path="/api/register" component={Register} />
+          <Route exact path="/api/users" component={Users} />
           <Route
             component={() => {
               return (
