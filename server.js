@@ -64,11 +64,14 @@ server.post('/api/users', (req, res) => {
 });
 
 server.get('/api/users', validateToken, (req, res) => {
-  User.find({}, (err, users) => {
-    if (err) return res.send(err);
-
-    res.send(users);
-  });
+  User.find({})
+    .select('username')
+    .then(users => {
+      res.send(users);
+    })
+    .catch(err => {
+      return res.send(err);
+    });
 });
 
 server.post('/api/login', (req, res) => {
