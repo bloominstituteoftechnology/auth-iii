@@ -36,7 +36,8 @@ const validateToken = (req, res, next) => {
       .status(422)
       .json({ error: 'No authorization token found on Authorization header' });
   } else {
-    jwt.verify(token, secret, (err, decoded) => {
+    // take out Bearer from the header
+    jwt.verify(token.slice(7), secret, (err, decoded) => {
       if (err) {
         res
           .status(401)
