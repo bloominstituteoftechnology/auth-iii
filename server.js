@@ -17,6 +17,15 @@ server.use(express.json());
 server.use(cors(corsOptions));
 
 // ######################## HELPER FUNCTIONS ########################
+function checkRole(role) {
+  return function(req, res, next) {
+    if(role === role) {
+      next()
+    } else {
+      res.status(403).send(`You don't have access here`)
+    }
+  }
+}
 
 const getTokenForUser = userObject => {
   // creating a JWT and returning it.
@@ -63,7 +72,7 @@ server.post('/api/users', (req, res) => {
   });
 });
 
-server.get('/api/users', validateToken, (req, res) => {
+server.get('/api/users', validateToken, checkRole('admin'), (req, res) => {
   User.find({})
     .select('username')
     .then(users => {
