@@ -12,15 +12,15 @@ To get started be sure to follow the regular steps:
 * `mongod` to start your MongoDB server.
 * `yarn start` to start the API server.
 
-## Endpoints
+## Existing Endpoints
 
 The server provides the following endpoints:
 
-## `[POST] /api/users`
+### `[POST] /api/users`
 
 * Takes a `username` and `password` in the request body, creates a user, saves the user to the DB and returns a JWT token.
 
-## `[POST] /api/login`
+### `[POST] /api/login`
 
 * Requires `username` and `password` to be sent in the request body. If the user exists, and the password is correct the result should be a shiny JWT.
 
@@ -32,7 +32,7 @@ The server provides the following endpoints:
 
 * This will be the token you need to send up to `[GET] /api/users`
 
-## `[GET] /api/users`
+### `[GET] /api/users`
 
 * Requires a valid JWT token to be sent in the `Authorization` header. **No need to add the word** `Bearer`, just the token.
 * An example could look like this:
