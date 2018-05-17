@@ -13,13 +13,16 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to Authentication</h1>
-          {localStorage.getItem('token') && (
-            <button onClick={this.signout}>Sign out</button>
-          )}
+          
         </header>
+        <div className="loginForm"> 
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Signin} />
         <Route path="/users" component={Users} />
+        {localStorage.getItem('token') && (
+            <button onClick={this.signout}>Sign out</button>
+          )}
+        </div>
       </div>
     );
   }
