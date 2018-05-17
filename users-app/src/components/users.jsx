@@ -16,10 +16,16 @@ class Users extends Component {
       .catch(err => this.props.history.push('/signin'))
   }
 
+  handleLogout = () => {
+    localStorage.removeItem('token');
+    this.props.history.push('/signin');
+  }
+
   render() {
     return (
       <div>
-        {this.state.users.map(user => <ul key={user._id}>{user.username}</ul>)}
+        <button onClick={() => this.handleLogout()}>Sign Out</button>
+        {this.state.users.map(user => <div key={user._id}>{user.username}</div>)}
       </div>
     )
   }
