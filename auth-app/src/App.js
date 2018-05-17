@@ -4,6 +4,7 @@ import logo from './logo.png';
 import './App.css';
 import Signin from './Components/Signin';
 import Users from './Components/Users';
+import SignUp from './Components/signup';
 
 class App extends Component {
   render() {
