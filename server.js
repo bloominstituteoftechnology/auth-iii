@@ -50,7 +50,7 @@ const validateToken = (req, res, next) => {
 };
 
 // ######################## ROUTE HANDLERS ########################
-
+//POST Users //http://localhost:5000/api/users
 server.post('/api/users', (req, res) => {
   const { username, password } = req.body;
   const user = new User({ username, password });
@@ -62,7 +62,7 @@ server.post('/api/users', (req, res) => {
     res.json({ token });
   });
 });
-
+//GET Users
 server.get('/api/users', validateToken, (req, res) => {
   User.find({})
     .select('username')
@@ -73,7 +73,7 @@ server.get('/api/users', validateToken, (req, res) => {
       return res.send(err);
     });
 });
-
+//POST Login
 server.post('/api/login', (req, res) => {
   const { username, password } = req.body;
   User.findOne({ username }, (err, user) => {
