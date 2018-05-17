@@ -4,7 +4,7 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 
 const secret = 'Who but me? Loves JWT';
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5500;
 const User = require('./users/User');
 
 const server = express();
