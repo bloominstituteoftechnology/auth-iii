@@ -12,6 +12,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
+          <h1>Welcome User!</h1>
           {localStorage.getItem('token') && (
             <button onClick={this.signout}>Sign Out</button>
           )}

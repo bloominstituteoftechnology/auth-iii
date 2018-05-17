@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import './styles.css';
 
 class Users extends React.Component {
     state= {
@@ -7,9 +8,15 @@ class Users extends React.Component {
     };
     render() {
         return (
-            <ul>
-                {this.state.users.map(user => <li key={user._id}>{user.username}</li>)}
-            </ul>
+        <div>
+        <ul>
+            {this.state.users.map(user => (
+              <li className="user" key={user._id}>
+                {user.username}
+              </li>
+            ))}
+          </ul>
+          </div>
         );
     }
 
