@@ -7,10 +7,10 @@ class Login extends React.Component {
     password: '',
   }
 
-  submitHandler() {
+  submitHandler = event => {
     event.preventDefault();
     axios
-      .post('http://localhost:5500/login', this.state)
+      .post('http://localhost:5000/login', this.state)
       .then(res => {
         localStorage.setItem('token', res.data.token);
         this.props.history.push('/users');
@@ -20,7 +20,7 @@ class Login extends React.Component {
       });
     }
 
-  imputHandler() {
+  inputHandler = event => {
     const { name, value } = event.target;
 
     this.setState({ [name]: value });
