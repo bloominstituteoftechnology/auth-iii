@@ -64,7 +64,7 @@ class Login extends React.Component {
         </div>
         <div>
           <Link to='/users'>
-          <button onClick={this.submitLoginHandler}>Login</button>
+            <button onClick={this.submitLoginHandler}>Login</button>
           </Link>
         </div>
         <div>
