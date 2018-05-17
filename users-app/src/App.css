@@ -1,5 +1,36 @@
 .App {
   text-align: center;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 28px;
+  /* background-image: url(https://www.infoom.se/bilder_till_hemsida/light-white-cyan-circle_52.png);
+  background-repeat: repeat;
+  background-size: contain; */
+}
+
+.signout-btn {
+  background-color: cyan;
+  font-family: 'Shadows Into Light', cursive;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.login-btn {
+  background-color: cyan;
+  font-family: 'Shadows Into Light', cursive;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.username {
+  font-family: 'Shadows Into Light', cursive;
+  color: black;
+  font-weight: bold;
+}
+
+.password {
+  font-family: 'Shadows Into Light', cursive;
+  color: black;
+  font-weight: bold;
 }
 
 .App-logo {
@@ -15,7 +46,16 @@
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 30px;
+  color: lightblue;
+  font-family: 'Anton', sans-serif;
+  font-weight: lighter;
+  text-shadow:
+		-10px -3px 0 #000,
+		1px -1px 0 #000,
+		-10px 3px 0 #000,
+    1px 1px 0 #000;
+    text-shadow: 3px 3px 4px teal;
 }
 
 .App-intro {

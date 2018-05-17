@@ -24,21 +24,21 @@ class SignIn extends Component {
 render() {
     return (
             <div>
-                <input 
+                <input className="username"
                     type = "text"
                     name = "username"
                     value = {this.state.username}
                     placeholder = "username"
                     onChange={event => this.setState({ [event.target.name]: event.target.value })}
                 />
-                <input
+                <input className="password"
                     type = "password"
                     name = "password"
                     value = {this.state.password}
                     placeholder = "password"
                     onChange={event => this.setState({ [event.target.name]: event.target.value })}
                 />
-                <button onClick={() => this.handleLogin()}>Login Here</button>
+                <button className="login-btn" onClick={() => this.handleLogin()}>Login Here</button>
             </div>
         )
     }

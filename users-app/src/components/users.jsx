@@ -26,7 +26,7 @@ class Users extends Component {
 render() {
     return (
         <div>
-            <button onClick={() => this.handleLogout()}>Sign Out Here</button>
+            <button className="signout-btn" onClick={() => this.handleLogout()}>Sign Out Here</button>
             {this.state.users.map(user => <div key={user._id}>{user.username}</div>)}
         </div>
         )
