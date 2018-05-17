@@ -7,15 +7,28 @@ class Login extends React.Component {
     password: '',
   }
 
-  submitHandler = event => {
+  submitLoginHandler = event => {
     event.preventDefault();
     axios
-      .post('http://localhost:5000/login', this.state)
+      .post('http://localhost:5000/api/login', this.state)
       .then(res => {
         localStorage.setItem('token', res.data.token);
-        this.props.history.push('/users');
+        this.props.history.push('/api/users');
       })
       .catch(err => {
+        localStorage.removeItem('token');
+      });
+    }
+
+  submitRegisterHandler = event => {
+    event.preventDefault();
+    axios
+        .post('http://localhost:5000/api/register', this.state)
+        .then(res => {
+          localStorage.setItem('token', res.data.token);
+          this.props.history.push('/api/users');
+      })
+        .catch(err => {
         localStorage.removeItem('token');
       });
     }
@@ -28,7 +41,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.submitHandler}>
+      <form>
         <div>
           <input 
             name='username'
@@ -47,9 +60,22 @@ class Login extends React.Component {
             placeholder='Password'
           />
         </div>
+        <div>
+            <button onClick={this.submitLoginHandler}>Login</button>
+        </div>
+        <div>
+            <button onClick={this.submitRegisterHandler}>Register</button>
+        </div>
       </form>
-    )
+    );
   }
+}
+
+class Register extends React.Component {
+    state = {
+        username: 'lambda',
+        password: 'class',
+    };
 }
 
 export default Login;
