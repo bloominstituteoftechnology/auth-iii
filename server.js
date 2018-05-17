@@ -30,7 +30,9 @@ const validateToken = (req, res, next) => {
   // this piece of middleware is taking the token delivered up to the server and verifying it
   // if no token is found in the header, you'll get a 422 status code
   // if token is not valid, you'll receive a 401 status code
-  const token = req.headers.authorization;
+  let token = req.headers.authorization;
+  token = token.replace('Bearer ',''); 
+  console.log(token);
   if (!token) {
     res
       .status(422)
