@@ -4,6 +4,7 @@ import './App.css';
 import { Route } from 'react-router-dom';
 import SignUp from './components/signup';
 import SignIn from './components/signin';
+import Users from './components/users';
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
         </header>
         <Route path="/signup" component={SignUp} />
         <Route path="/signin" component={SignIn} />
+        <Route path="/users" component={Users} />
       </div>
     );
   }
