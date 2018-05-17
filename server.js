@@ -105,7 +105,7 @@ server.post('/api/login', (req, res) => {
 // ######################## CONNECT TO DB AND START THE API ########################
 
 mongoose
-  .connect('mongodb://localhost/auth')
+  .connect('mongodb://localhost/auth', {autoIndex: false})
   .then(() => {
     console.log('\n=== Connected to MongoDB ===');
     server.listen(port, (req, res) => {
