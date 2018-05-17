@@ -51,7 +51,7 @@ const validateToken = (req, res, next) => {
 
 // ######################## ROUTE HANDLERS ########################
 
-server.post('/api/users', (req, res) => {
+server.post('/api/register', (req, res) => {
   const { username, password } = req.body;
   const user = new User({ username, password });
 
