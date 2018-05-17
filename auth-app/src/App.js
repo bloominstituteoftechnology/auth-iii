@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Route, withRouter } from 'react-router-dom';
+import logo from './logo.png';
 import './App.css';
+import Signin from './Components/Signin';
+import Users from './Components/Users';
 
 class App extends Component {
   render() {
@@ -8,14 +11,22 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome to Authentication</h1>
+          {localStorage.getItem('token') && (
+            <button onClick={this.signout}>Sign out</button>
+          )}
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Route path="/signup" component={SignUp} />
+        <Route path="/login" component={Signin} />
+        <Route path="/users" component={Users} />
       </div>
     );
   }
+
+  signout = () => {
+    localStorage.removeItem('token');
+    this.props.history.push('/login');
+  };
 }
 
-export default App;
+export default withRouter(App);

@@ -4,8 +4,9 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 
 const secret = 'Who but me? Loves JWT';
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5500;
 const User = require('./users/User');
+const errors = require('./errors.js')
 
 const server = express();
 const corsOptions = {
@@ -50,6 +51,16 @@ const validateToken = (req, res, next) => {
 };
 
 // ######################## ROUTE HANDLERS ########################
+server.post('/register', (req, res, next) => {
+  if (!req.body.username) next(errors.userRegisterMissingName)
+  if (!req.body.password) next(errors.userRegisterMissingPassword)
+  if (req.body.password.length < 7) next(errors.userRegisterInvalidPassword)
+
+  const user = new User(req.body)
+  user.save()  
+    .then(user => res.send(user))
+    .catch(err => next({ status: 500, error: err }))
+})
 
 server.post('/api/users', (req, res) => {
   const { username, password } = req.body;
