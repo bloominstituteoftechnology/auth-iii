@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import "./App.css";
 
+import Register from "./components/Register";
+import UserList from "./components/UserList";
+
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Register />
+        <UserList />
       </div>
     );
   }
