@@ -3,7 +3,7 @@ import axios from "axios";
 
 class Users extends React.Component {
   state = {
-    users: []
+    users: [] || ["fetching users..."]
   };
 
   render() {

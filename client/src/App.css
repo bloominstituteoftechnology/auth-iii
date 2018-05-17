@@ -16,6 +16,7 @@
 
 .App-title {
   font-size: 1.5em;
+  margin-bottom: 20px;
 }
 
 .App-intro {
@@ -23,6 +24,79 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.nav {
+  margin: 5px;
+  text-decoration: none;
+  color: white;
+  padding: 6px;
+  background-color: purple;
+  font-weight: bold;
+  box-shadow: 2px 2px 2px black;
+}
+
+.nav:hover {
+  background-color: lightgoldenrodyellow;
+  color: purple;
+}
+
+li {
+  font-size: 1.5rem;
+  margin: 10px auto;
+  padding: 10px;
+  list-style: none;
+  color: deeppink;
+  border-bottom: 1px solid purple;
+  width: 40%;
+  text-align: center;
+  background-color: lightcyan;
+}
+
+input {
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 25px;
+  border: 3px solid #ffc4;
+  border-radius: 5%;
+  background: rgba(255, 255, 255);
+  color: purple;
+  box-shadow: 2px 2px 2px grey;
+}
+
+button {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: purple;
+  border-radius: 10%;
+  border: 2px solid #fff;
+  padding: 5px 20px;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 2px 2px 2px black;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.logout {
+  font-size: 1.1rem;
+  padding: 1px 10px;
+  margin: -11px auto;
+  text-align: center;
+  background-color: purple;
+  color: white;
+}
+
+.home {
+  color: white;
 }
