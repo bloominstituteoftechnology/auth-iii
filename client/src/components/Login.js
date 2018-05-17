@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import UserForm from './UserForm'
 import axios from 'axios'
 
-export default class Register extends Component {
+export default class Login extends Component {
 
   handleSubmit = (user) => {
     console.log('submitting')
