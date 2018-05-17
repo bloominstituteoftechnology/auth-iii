@@ -18,6 +18,7 @@ class Register extends React.Component {
             <label htmlFor="username" />
             <input
               name="username"
+              placeholder="username"
               value={this.state.username}
               onChange={this.inputChangeHandler}
               type="text"
@@ -27,6 +28,7 @@ class Register extends React.Component {
             <label htmlFor="password" />
             <input
               name="password"
+              placeholder="password"
               value={this.state.password}
               onChange={this.inputChangeHandler}
               type="password"
