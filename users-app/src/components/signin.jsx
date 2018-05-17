@@ -38,7 +38,7 @@ render() {
                     placeholder = "password"
                     onChange={event => this.setState({ [event.target.name]: event.target.value })}
                 />
-                <button className="login-btn" onClick={() => this.handleLogin()}>Login Here</button>
+                <button className="login-btn" onClick={() => this.handleLogin()}>Sign In</button>
             </div>
         )
     }
