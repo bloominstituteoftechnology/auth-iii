@@ -1,21 +1,40 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+// /src/App.js
+import React, { Component } from "react";
+import { Route, Redirect, withRouter } from "react-router-dom";
+
+import "./App.css";
+import Signin from "./components/Signin";
+import Register from "./components/Register";
+import Users from "./components/Users";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Route
+          exact
+          path="/"
+          render={() =>
+            !localStorage.getItem("token") ? <Redirect to="/register" /> : null
+          }
+        />
+        {localStorage.getItem("token") && (
+          <button onClick={this.signout}>Sign out</button>
+        )}
+        <Route path="/register" component={Register} />
+        <Route path="/signin" component={Signin} />
+        <Route path="/users" component={Users} />
       </div>
     );
   }
+
+  register = () => {
+    this.props.history.push("/register");
+  };
+  signout = () => {
+    localStorage.removeItem("token");
+    this.props.history.push("/register");
+  };
 }
 
-export default App;
+export default withRouter(App);
