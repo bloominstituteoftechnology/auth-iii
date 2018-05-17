@@ -54,7 +54,6 @@ const validateToken = (req, res, next) => {
 server.post('/api/users', (req, res) => {
   const { username, password } = req.body;
   const user = new User({ username, password });
-
   user.save((err, user) => {
     if (err) return res.send(err);
 
