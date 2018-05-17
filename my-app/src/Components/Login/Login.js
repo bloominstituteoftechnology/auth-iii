@@ -44,9 +44,12 @@ class Signup extends Component {
         }
 
         axios.post("http://localhost:5000/api/login", newUser)
-        .then(success => {
-            console.log("login", success)
-            alert("Logging in");
+        .then(response => {
+            alert("Logging in")
+            console.log(response.data.token)
+
+            localStorage.setItem("token", response.data.token)
+            // this.props.history.push('/')
         }).catch(err => {
             console.log(err);
             alert('No user exists'); 

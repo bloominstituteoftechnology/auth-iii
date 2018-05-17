@@ -10,19 +10,39 @@ class Users extends Component {
         }
     }
 
+    componentDidMount = event => {
+        const token = localStorage.getItem('token');
+        const authtoken = `${token}`;
+
+        const requestOptions = {
+            headers: {
+                Authorization: authtoken,
+            }
+        }
+
+        axios.get("http://localhost:5000/api/users", requestOptions)
+        .then(response => {
+            console.log("users", response)
+            this.setState({
+                users: response.data
+            });
+        }).catch(err => {
+            console.log("users",err)
+            this.props.history.push('/login')
+        })
+    }
+
 
 
     render() {
         return(
             <div>
                 {this.state.users.length < 1 ? (
-                    alert("Access Denied")
+                    <h1>access denied</h1>
                 ) : (
-                    <div>
-                        {this.state.users.map(user => {
-                            <div>{user}</div>
-                        })}
-                    </div>
+                    <ul>
+                        {this.state.users.map(user => <li key={user._id}>{user.username}</li>)}
+                    </ul>
                 )}
             </div>
         )
