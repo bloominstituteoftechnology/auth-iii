@@ -43,15 +43,13 @@ class Signup extends Component {
             return;
         }
 
-        axios.post("http://localhost:5000/api/register", newUser)
+        axios.post("http://localhost:5000/api/login", newUser)
         .then(success => {
-            console.log("signup", success)
-            alert("User posted");
-            this.props.history.push('/login')
-
+            console.log("login", success)
+            alert("Logging in");
         }).catch(err => {
             console.log(err);
-            alert('failed to make new user'); 
+            alert('No user exists'); 
             this.props.history.push('/signup')
         })
     }
@@ -63,7 +61,7 @@ class Signup extends Component {
             <div className="body">
                 <div className="container">
                     <div className="register--header">
-                        <h2>Fill out the form below</h2>
+                        <h2>Login</h2>
                     </div>
 
                     <div className="form">
