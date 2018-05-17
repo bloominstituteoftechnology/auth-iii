@@ -29,7 +29,7 @@ class Signup extends Component {
                     />
                 </div>
                 <div>
-                    <button>Sign In</button>
+                    <button>Sign Up</button>
                 </div>
             </form>
         );
