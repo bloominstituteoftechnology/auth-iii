@@ -21,12 +21,12 @@ class Users extends React.Component {
       },
     };
     axios
-      .get('http://localhost:5500/user', requestOptions)
+      .get('http://localhost:5000/api/users', requestOptions)
       .then(response => {
         this.setState({ users: response.data });
       })
       .catch(error => {
-        this.props.history.push('/signin');
+        this.props.history.push('/api/login');
       });
   };
 }
