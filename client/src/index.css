@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: -moz-linear-gradient(
+    top,
+    #ebf1f6 0%,
+    #abd3ee 50%,
+    #89c3eb 51%,
+    #d5ebfb 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    top,
+    #ebf1f6 0%,
+    #abd3ee 50%,
+    #89c3eb 51%,
+    #d5ebfb 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #ebf1f6 0%,
+    #abd3ee 50%,
+    #89c3eb 51%,
+    #d5ebfb 100%
+  );
+}
