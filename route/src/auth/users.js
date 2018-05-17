@@ -33,11 +33,16 @@ class Users extends Component {
           })
       }
 
+      signout = () => {
+          localStorage.removeItem('token');
+          this.props.history.push('/');
+      }
 
     render(){
         // const {user} = this.props;
         return (
             <div>
+                <button onClick={this.signout}>Sign Out</button>
                 {this.state.users.map(user => {
                     return (
                         <h3>{user.username}</h3>
