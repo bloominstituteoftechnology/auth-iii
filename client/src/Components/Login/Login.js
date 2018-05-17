@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class Login extends React.Component {
   state = {
@@ -25,10 +26,10 @@ class Login extends React.Component {
     axios
       .post("http://localhost:5000/api/register", this.state)
       .then(res => {
-        response: "Welcome!"
+        response: "Welcome!";
       })
-      .catch(err => {        
-          error: "There  was an error during registration."        
+      .catch(err => {
+        error: "There  was an error during registration.";
       });
   };
 
@@ -60,7 +61,9 @@ class Login extends React.Component {
           />
         </div>
         <div>
+          <Link to='/users'>
           <button onClick={this.submitLoginHandler}>Login</button>
+          </Link>
         </div>
         <div>
           <button onClick={this.submitRegisterHandler}>Register</button>
