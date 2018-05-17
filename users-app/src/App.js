@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { Route } from 'react-router-dom';
 import SignUp from './components/signup';
+import SignIn from './components/signin';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <Route path="/signup" component={SignUp} />
+        <Route path="/signin" component={SignIn} />
       </div>
     );
   }
