@@ -17,11 +17,17 @@ class Users extends Component {
             .then(res => this.setState({ users: res.data }))
             .catch(err => this.props.history.push('/signin'))
     }
+    //LOGOUT
+    handleLogout = () => {
+        localStorage.removeItem('token');
+        this.props.history.push('/signin');
+    }
 
 render() {
     return (
         <div>
-            {this.state.users.map(user => <ul key={user._id}>{user.username}</ul>)}
+            <button onClick={() => this.handleLogout()}>Sign Out Here</button>
+            {this.state.users.map(user => <div key={user._id}>{user.username}</div>)}
         </div>
         )
     }
