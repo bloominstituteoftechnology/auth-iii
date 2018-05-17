@@ -6,11 +6,21 @@ class Users extends React.Component {
     users: [],
   };
 
+  signout = () => {
+    localStorage.removeItem('token');
+    this.props.history.push('/signin');
+  };
+
   render() {
     return (
+      <div>
       <ul>
         {this.state.users.map(user => <li key={user._id}>{user.username}</li>)}
       </ul>
+          {localStorage.getItem('token') && (
+            <button onClick={this.signout}>Sign out</button>
+          )}
+    </div>
     );
   }
 
