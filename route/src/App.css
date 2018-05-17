@@ -1,0 +1,55 @@
+.App {
+  text-align: center;
+}
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+#root{
+  height: 10000px;
+  background-image: url(https://i.imgur.com/9W0cstM.gif)
+}
+
+.App-intro {
+  font-size: large;
+}
+.wow{
+  color: white;
+  font-size: 6rem;
+}
+.foo{
+  padding: 10px;
+  margin-top: 10%;
+}
+.whatever {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 8%;
+}
+
+.boxes {
+  display: flex;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.Butts {
+  padding: 10px;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
