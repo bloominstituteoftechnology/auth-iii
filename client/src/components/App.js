@@ -14,9 +14,8 @@ class App extends Component {
     this.props.history.push('/')
   }
 
-  githubOAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientID}&state=${oAuthState}`
-
   controls = () => {
+    const githubOAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientID}&state=${oAuthState}`
     if (localStorage.getItem('token')) {
       return <button onClick={this.logout}>Logout</button>
     } else {
@@ -24,7 +23,7 @@ class App extends Component {
         <div>
           <Link to='/register'><button>Create User</button></Link>
           <Link to='/login'><button>Log in</button></Link>
-          <a href={this.githubOAuthUrl}><button>Login with github</button></a>
+          <a href={githubOAuthUrl}><button>Login with github</button></a>
         </div>  
       )
     }
@@ -33,7 +32,7 @@ class App extends Component {
   render = () => (
     <div>
       {this.controls()}
-      {localStorage.getItem('token')}
+      <span style={{ fontSize: '70%' }}>{localStorage.getItem('token')}</span>
       <Route path='/register' exact component={Register} />
       <Route path='/login' component={Login} />
       <Route path='/users' component={UsersList} />
