@@ -6,7 +6,26 @@ class Login extends React.Component {
     username: '',
     password: '',
   }
-  
+
+  submitHandler() {
+    event.preventDefault();
+    axios
+      .post('http://localhost:5500/login', this.state)
+      .then(res => {
+        localStorage.setItem('token', res.data.token);
+        this.props.history.push('/users');
+      })
+      .catch(err => {
+        localStorage.removeItem('token');
+      });
+    }
+
+  imputHandler() {
+    const { name, value } = event.target;
+
+    this.setState({ [name]: value });
+  }
+
   render() {
     return (
       <form onSubmit={this.submitHandler}>
