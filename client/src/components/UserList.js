@@ -34,12 +34,18 @@ class UserList extends Component {
   render() {
     return (
       <div className="UserList">
+        <button
+          onClick={() => {
+            localStorage.removeItem("token");
+            this.props.history.push("/signin");
+          }}
+        >
+          Logout
+        </button>
         <h1>User List</h1>
-        <ul>
-          {this.state.users.map(user => {
-            return <User username={user.username} key={user._id} />;
-          })}
-        </ul>
+        {this.state.users.map(user => {
+          return <User username={user.username} key={user._id} />;
+        })}
       </div>
     );
   }
