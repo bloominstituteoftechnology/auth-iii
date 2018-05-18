@@ -1,0 +1,34 @@
+body {
+  background-image: url("../img/background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+h1 {
+	font-family: Orbitron;
+	font-size: 70px;
+	font-style: italic;
+	font-variant: small-caps;
+	font-weight: 700;
+}
+
+.HomeContainer {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.HomeContainer h1 {
+    margin: 0;
+}
+
+.HomeLink {
+    color: #000;
+    margin-top: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
