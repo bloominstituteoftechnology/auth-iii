@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Link, Redirect} from "react-router-dom";
 import axios from "axios"
-
+import "../Users/Users.css"
 class Users extends Component {
     constructor() {
         super();
@@ -27,7 +27,6 @@ class Users extends Component {
                 users: response.data
             });
         }).catch(err => {
-            console.log("users",err)
             this.props.history.push('/login')
         })
     }
