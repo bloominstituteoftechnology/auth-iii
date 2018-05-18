@@ -1,5 +1,13 @@
 import React from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
+
+const slogin = {
+    backgroundColor: 'beige'
+};
+const homeSt = {
+    backgroundColor: 'blue'
+}
 
 class Signin extends React.Component {
     constructor(props) {
@@ -30,9 +38,16 @@ class Signin extends React.Component {
                 localStorage.removeItem('token');
             });
     }
+    handleSelect = () => {
+        console.log('Fired in signin, the handleSelect', this.props)
+        this.props.handleSelect();
+        // this.props.history.push('/');
+
+    }
     render() {
         return (
-            <div>
+            <div style={slogin} >
+            <h3>Please Sign In</h3>
                 <form onSubmit={this.sendCredentials}>
                     <div>
                         <label htmlFor="username" />
@@ -55,6 +70,12 @@ class Signin extends React.Component {
                     <div>
                         <button>Sign in</button>
                     </div>
+                    <div style={homeSt} >
+                        <h3>Go Back To Home</h3>
+                        <Link to="/" >
+                        <button onClick={this.handleSelect} >Home</button>
+                        </Link>
+                        </div>
                 </form>
             </div>
         )

@@ -1,8 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-
+import {Link} from 'react-router-dom';
 const nuser = {
     backgroundColor: 'blue'
+};
+const homeSt = {
+    backgroundColor: 'beige'
 }
 
 class Signup extends React.Component {
@@ -15,10 +18,6 @@ class Signup extends React.Component {
     }
     handleTextInput = e => {
         e.preventDefault();
-        let name = e.target.name
-        name = e.target.value;
-        console.log(e.target.name)
-        console.log(e.target.value)
         this.setState({ [e.target.name]: e.target.value })
     };
     newCredentials = () => {
@@ -28,10 +27,7 @@ class Signup extends React.Component {
             username: username,
             password: password
         };
-        let userObject = {
-            username: username,
-            loggedIn: true
-        }
+   
         console.log('This is the Authentication Credentials', newObject);
         axios.post('http://localhost:5000/api/users', newObject)
 
@@ -44,6 +40,11 @@ class Signup extends React.Component {
             .catch(err => {
                 console.log(err);
             })
+    };
+    handleSelect = () => {
+        console.log('Fired in signin, the handleSelect', this.props)
+        this.props.handleSelect();
+
     }
     render() {
         return (
@@ -66,6 +67,12 @@ class Signup extends React.Component {
                 <button onClick={() => this.newCredentials()}>
                     Send Credentials
                     </button>
+                    <div style={homeSt} >
+                        <h3>Go Back To Home</h3>
+                        <Link to="/" >
+                        <button onClick={this.handleSelect} >Home</button>
+                        </Link>
+                        </div>
             </div>
         )
     }
