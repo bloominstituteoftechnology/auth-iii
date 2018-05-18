@@ -24,7 +24,7 @@ class SingIn extends Component {
     promise
       .then(response => {
         console.log("response1", response.data);
-        // localStorage.setItem("token", response.data.token);
+        localStorage.setItem("token", response.data.token);
         this.props.history.push("/login");
       })
       .catch(err => {
