@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-class Register extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,14 +10,14 @@ class Register extends Component {
     };
   }
 
-  register = event => {
+  login = event => {
     event.preventDefault();
-    const newUser = {
+    const userData = {
       username: this.state.username,
       password: this.state.password
     };
     axios
-      .post("http://localhost:5000/api/register", newUser)
+      .post("http://localhost:5000/api/login", userData)
       .then(response => {
         console.log(response);
       })
@@ -37,8 +37,8 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="Register">
-        <form onSubmit={this.register}>
+      <div className="Login">
+        <form onSubmit={this.login}>
           <input
             onChange={this.handleInputChange}
             placeholder="username"
@@ -51,11 +51,11 @@ class Register extends Component {
             value={this.state.password}
             name="password"
           />
-          <button type="submit">Register this user</button>
+          <button type="submit">Login this user</button>
         </form>
       </div>
     );
   }
 }
 
-export default Register;
+export default Login;
