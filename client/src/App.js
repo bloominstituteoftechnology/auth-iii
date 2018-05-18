@@ -17,7 +17,9 @@ class App extends Component {
         <Route path="/" exact component={SignIn} />
         <Route path="/login" exact component={SignUp} />
         <Route path="/users" exact component={UsersList} />
-        <button onClick={this.signOut}>Sign Out</button>
+        {localStorage.getItem("token") && (
+          <button onClick={this.signOut}>Sign Out</button>
+        )}
       </div>
     );
   }

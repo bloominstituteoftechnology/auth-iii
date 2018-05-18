@@ -20,11 +20,17 @@ class SignUp extends Component {
     };
 
     const promise = axios.post("http://localhost:5000/api/login", obj);
-    promise.then(response => {
-      console.log("response2", response);
-      localStorage.setItem("token", response.data.token);
-      this.props.history.push("/users");
-    });
+    promise
+
+      .then(response => {
+        console.log("response2", response);
+        localStorage.setItem("token", response.data.token);
+        this.props.history.push("/users");
+      })
+      .catch(err => {
+        localStorage.removeItem("token");
+        this.props.history.push("/");
+      });
   };
 
   render() {
