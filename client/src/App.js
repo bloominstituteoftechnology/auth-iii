@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
-import { Route, withRouter } from 'react-router-dom';
+import React, { Component } from "react";
+import { Route, withRouter, NavLink } from "react-router-dom";
 
-import Signin from './auth/Signin';
-import logo from './logo.svg';
-import './App.css';
-import Users from './Users';
+import logo from "./logo.svg";
+import "./App.css";
+import Login from "./Login";
+import Users from "./Users";
+import Register from "./Register";
+import Home from "./Home";
 
 class App extends Component {
   render() {
@@ -12,21 +14,31 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-          {localStorage.getItem('token') && 
-          (<button onClick={this.signout}> Sign Out </button> )}
-          
-        </header>
-        <Route path="/signin" component={Signin}> </Route>
-        <Route path="/users" component={Users}> </Route>
+          <h1 className="App-title">
+            <NavLink className="home" to="/">
+              Home
+            </NavLink>
+          </h1>
 
+          {localStorage.getItem("token") && (
+            <button className="logout" onClick={this.signout}>
+              Sign out
+            </button>
+          )}
+        </header>
+
+        <Route exact path="/" component={Home} />
+        <Route path="/signin" component={Login} />
+        <Route path="/signup" component={Register} />
+        <Route path="/users" component={Users} />
       </div>
     );
   }
+
   signout = () => {
-    localStorage.remover('token');
-    this.props.history.push('/signin');
-  }
+    localStorage.removeItem("token");
+    this.props.history.push("/signin");
+  };
 }
 
 export default withRouter(App);

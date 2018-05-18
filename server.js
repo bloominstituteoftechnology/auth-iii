@@ -60,7 +60,7 @@ const validateToken = (req, res, next) => {
 
 // ######################## ROUTE HANDLERS ########################
 
-server.post('/api/users', (req, res) => {
+server.post('/api/users', (req, res) => { // POSTS NEW USER WITH TOKEN + HASHED PASS 
   const { username, password } = req.body;
   const user = new User({ username, password });
 
@@ -68,22 +68,24 @@ server.post('/api/users', (req, res) => {
     if (err) return res.send(err);
 
     const token = getTokenForUser({ username: user.username });
-    res.json({ token });
+    res.json({ token, user });
   });
 });
 
-server.get('/api/users', validateToken, checkRole('admin'), (req, res) => {
+// validateToken, checkRole('admin')
+server.get('/api/users', (req, res) => { // THIS IS SUPPOSED TO GET ALL USERS & VALIDATE TOKEN 
+  
   User.find({})
     .select('username')
     .then(users => {
-      res.send(users);
+      res.json({ users });
     })
     .catch(err => {
       return res.send(err);
     });
 });
 
-server.post('/api/login', (req, res) => {
+server.post('/api/login', (req, res) => { // IF CREDENTIALS CORRECT, RES TOKEN 
   const { username, password } = req.body;
   User.findOne({ username }, (err, user) => {
     if (err) {
@@ -103,7 +105,7 @@ server.post('/api/login', (req, res) => {
 
       if (isMatch) {
         const token = getTokenForUser({ username: user.username });
-        res.json({ token });
+        res.json({ msg: "Success! Here's the token: ", token });
       } else {
         return res.status(422).json({ error: 'passwords dont match' });
       }
