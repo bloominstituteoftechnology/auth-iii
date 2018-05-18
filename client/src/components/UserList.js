@@ -12,13 +12,22 @@ class UserList extends Component {
   }
 
   componentDidMount = () => {
+    const token = localStorage.getItem("token");
+    const requestOptions = {
+      headers: {
+        Authorization: token
+      }
+    };
+    console.log(requestOptions);
     axios
-      .get("http://localhost:5000/api/users")
+      .get("http://localhost:5000/api/users", requestOptions)
       .then(response => {
+        console.log(response.data);
         this.setState(() => ({ users: response.data }));
       })
       .catch(error => {
         console.log(error);
+        this.props.history.push("/signin");
       });
   };
 
@@ -28,7 +37,7 @@ class UserList extends Component {
         <h1>User List</h1>
         <ul>
           {this.state.users.map(user => {
-            return <User username={user.username} id={user._id} />;
+            return <User username={user.username} key={user._id} />;
           })}
         </ul>
       </div>

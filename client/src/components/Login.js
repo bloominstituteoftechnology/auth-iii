@@ -19,7 +19,9 @@ class Login extends Component {
     axios
       .post("http://localhost:5000/api/login", userData)
       .then(response => {
-        console.log(response);
+        console.log(response.data);
+        localStorage.setItem("token", response.data.token);
+        this.props.history.push("/users");
       })
       .catch(error => {
         console.log(error);
