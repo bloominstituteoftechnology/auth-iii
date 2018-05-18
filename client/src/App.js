@@ -19,7 +19,7 @@ class App extends Component {
     this.props.history.push('/signin');
   };
   handleSelect = () => {
-    this.setState({select: !this.state.select})
+    this.setState({ select: !this.state.select })
     console.log('Fired the handle Select')
     this.passProps();
   };
@@ -27,15 +27,16 @@ class App extends Component {
     console.log("Fired pass props")
     return (
       <Signin
-      handleSelect={this.handleSelect.bind(this)}
-      // {...props}
+        handleSelect={this.handleSelect.bind(this)}
+        {...props}
       />
     )
   };
   passProps2 = (props) => {
     return (
-      <Signup 
-      handleSelect={this.handleSelect.bind(this)}
+      <Signup
+        handleSelect={this.handleSelect.bind(this)}
+        {...props}
       />
     )
   }

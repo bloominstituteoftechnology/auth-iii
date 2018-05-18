@@ -30,6 +30,7 @@ class Users extends React.Component {
     render() {
         return (
             <div>
+                {/* <h2>Welcome to the Users Home Page</h2> */}
                 {this.state.users.map((user, i) => <li key={user + i}>{user.username}</li>)}
             </div>
         )

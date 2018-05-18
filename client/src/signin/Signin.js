@@ -31,14 +31,15 @@ class Signin extends React.Component {
             .post('http://localhost:5000/api/login', this.state)
             .then(response => {
                 localStorage.setItem('token', response.data.token);
-                console.log('This is insde the submit, this.props:', this.props)
+                console.log('This is insde the submit, this.props:', response)
                 this.props.history.push('/users');
             })
             .catch(err => {
                 localStorage.removeItem('token');
             });
     }
-    handleSelect = () => {
+    handleSelect = (e) => {
+        e.preventDefault();
         console.log('Fired in signin, the handleSelect', this.props)
         this.props.handleSelect();
         // this.props.history.push('/');
@@ -48,6 +49,7 @@ class Signin extends React.Component {
         return (
             <div style={slogin} >
             <h3>Please Sign In</h3>
+
                 <form onSubmit={this.sendCredentials}>
                     <div>
                         <label htmlFor="username" />
@@ -68,15 +70,17 @@ class Signin extends React.Component {
                         />
                     </div>
                     <div>
+                        
                         <button>Sign in</button>
                     </div>
-                    <div style={homeSt} >
+
+                </form>
+                <div style={homeSt} >
                         <h3>Go Back To Home</h3>
                         <Link to="/" >
                         <button onClick={this.handleSelect} >Home</button>
                         </Link>
                         </div>
-                </form>
             </div>
         )
     }
