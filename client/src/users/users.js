@@ -28,7 +28,6 @@ class Users extends Component {
     axios
       .get("http://localhost:5000/api/users", requestOptions)
       .then(response => {
-        console.log(response);
         this.setState({ users: response.data });
       })
       .catch(err => {

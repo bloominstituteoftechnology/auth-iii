@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
-import{Route} from 'react-router-dom'
+import{Route, withRouter} from 'react-router-dom'
 import logo from './logo.svg';
 import './App.css';
 import SignIn from './Auth/SignIn'
 import Users from './users/users'
 class App extends Component {
+  signout =()=>{
+    localStorage.removeItem('token')
+    this.props.history.push('/signin')
+  }
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
+          <button onClick={this.signout}>sign out</button>
         </header>
-        routes go here
+     
         <Route path='/users' component={Users}/>
         <Route path='/signin' component={SignIn}/>
       </div>
@@ -20,4 +25,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
