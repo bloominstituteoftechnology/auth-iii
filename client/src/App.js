@@ -3,6 +3,7 @@ import{Route} from 'react-router-dom'
 import logo from './logo.svg';
 import './App.css';
 import SignIn from './Auth/SignIn'
+import Users from './users/users'
 class App extends Component {
   render() {
     return (
@@ -12,6 +13,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         routes go here
+        <Route path='/users' component={Users}/>
         <Route path='/signin' component={SignIn}/>
       </div>
     );
