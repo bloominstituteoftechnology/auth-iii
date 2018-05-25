@@ -1,16 +1,16 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const jwt = require('jsonwebtoken');
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const jwt = require("jsonwebtoken");
 
-const secret = 'Who but me? Loves JWT';
+const secret = "Who but me? Loves JWT";
 const port = process.env.PORT || 5000;
-const User = require('./users/User');
+const User = require("./users/User");
 
 const server = express();
 const corsOptions = {
-  origin: 'http://localhost:3000',
-  credentials: true,
+  origin: "http://localhost:3000",
+  credentials: true
 };
 
 server.use(express.json());
@@ -23,7 +23,7 @@ const getTokenForUser = userObject => {
   // this function is more of a simple helper function than middleware,
   // notice `req, res and next` are missing, this is because the auth is simple here.
   // no need for custom middleware, just a helper function. :)
-  return jwt.sign(userObject, secret, { expiresIn: '1h' });
+  return jwt.sign(userObject, secret, { expiresIn: "1h" });
 };
 
 const validateToken = (req, res, next) => {
@@ -34,13 +34,13 @@ const validateToken = (req, res, next) => {
   if (!token) {
     res
       .status(422)
-      .json({ error: 'No authorization token found on Authorization header' });
+      .json({ error: "No authorization token found on Authorization header" });
   } else {
     jwt.verify(token, secret, (err, decoded) => {
       if (err) {
         res
           .status(401)
-          .json({ error: 'Token invalid, please login', message: err });
+          .json({ error: "Token invalid, please login", message: err });
       } else {
         // token is valid, so continue on to the next middleware/request handler function
         next();
@@ -51,7 +51,7 @@ const validateToken = (req, res, next) => {
 
 // ######################## ROUTE HANDLERS ########################
 
-server.post('/api/register', (req, res) => {
+server.post("/api/register", (req, res) => {
   const { username, password } = req.body;
   const user = new User({ username, password });
 
@@ -63,9 +63,9 @@ server.post('/api/register', (req, res) => {
   });
 });
 
-server.get('/api/users', validateToken, (req, res) => {
+server.get("/api/users", validateToken, (req, res) => {
   User.find({})
-    .select('username')
+    .select("username")
     .then(users => {
       res.send(users);
     })
@@ -74,29 +74,33 @@ server.get('/api/users', validateToken, (req, res) => {
     });
 });
 
-server.post('/api/login', (req, res) => {
+server.post("/api/login", (req, res) => {
   const { username, password } = req.body;
   User.findOne({ username }, (err, user) => {
     if (err) {
-      return res.status(500).json({ error: 'Invalid Username/Password' });
+      return res.status(500).json({ error: "Invalid Username/Password" });
     }
 
     if (!user) {
       return res
         .status(422)
-        .json({ error: 'No user with that username in our DB' });
+        .json({ error: "No user with that username in our DB" });
     }
 
     user.checkPassword(password, (err, isMatch) => {
       if (err) {
-        return res.status(422).json({ error: 'passwords dont match' });
+        return res.status(422).json({ error: "passwords dont match" });
       }
 
       if (isMatch) {
         const token = getTokenForUser({ username: user.username });
-        res.json({ token });
+        const userData = {
+          id: user._id,
+          username: user.username
+        };
+        res.json({ userData, token });
       } else {
-        return res.status(422).json({ error: 'passwords dont match' });
+        return res.status(422).json({ error: "passwords dont match" });
       }
     });
   });
@@ -105,13 +109,13 @@ server.post('/api/login', (req, res) => {
 // ######################## CONNECT TO DB AND START THE API ########################
 
 mongoose
-  .connect('mongodb://localhost/auth')
+  .connect("mongodb://localhost/auth")
   .then(() => {
-    console.log('\n=== Connected to MongoDB ===');
+    console.log("\n=== Connected to MongoDB ===");
     server.listen(port, (req, res) => {
       console.log(`\n=== API up on port ${port} ===\n`);
     });
   })
   .catch(err =>
-    console.log('\n=== Error connecting to MongoDb, is it running? ===\n', err)
+    console.log("\n=== Error connecting to MongoDb, is it running? ===\n", err)
   );
