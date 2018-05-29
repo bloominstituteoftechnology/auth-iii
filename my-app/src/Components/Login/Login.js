@@ -12,6 +12,13 @@ class Signup extends Component {
         }
     }
 
+    // handleKeyPress = (e) => {
+    //     if(e.key === 'Enter' || e.charCode === 13 || e.keyCode === 13){
+    //         this.handleFormSubmit();
+    //     }
+    //   }
+
+
     showPassword() {
         if(this.state.type === "password") {
             this.setState({
@@ -32,23 +39,21 @@ class Signup extends Component {
 
     handleFormSubmit = (e) => {
         e.preventDefault()
-        const newUser = {
+        const user = {
             username: this.state.username,
             password: this.state.password
         }
 
-        if(newUser.username.length < 1 || newUser.password
+        if(user.username.length < 1 || user.password
         .length < 1) {
             alert('Please fill out both username and password');
             return;
         }
 
-        axios.post("http://localhost:5000/api/login", newUser)
+        axios.post("https://noteslambda.herokuapp.com/users/login", user)
         .then(response => {
             alert("Logging in")
-
-            localStorage.setItem("token", response.data.token)
-            this.props.history.push('/')
+            this.props.history.push('/home')
         }).catch(err => {
             console.log(err);
             alert('No user exists'); 
@@ -69,7 +74,7 @@ class Signup extends Component {
                     <div className="form">
                         <form onSubmit={this.handleFormSubmit}>
                             <input onChange={this.handleInputChange}  type="text" name="username" placeholder="Username:"/>
-                            <input onChange={this.handleInputChange}  type={this.state.type} name="password" placeholder="Password:"/>
+                            <input onChange={this.handleInputChange} onClick={this.handleKeyPress}  type={this.state.type} name="password" placeholder="Password:"/>
 
                             <div className="register--checkbox">
                                 <input onClick={() => {
